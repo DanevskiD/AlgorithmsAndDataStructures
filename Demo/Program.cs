@@ -9,15 +9,55 @@
             // fib(n) = fib(n-1) + fib(n-2)
             // (0) 1 1 2 3 5 8 13 21 34 ...
 
-            DateTime start = DateTime.Now;
+            // int[] array = new int[10_000];
+            // for (int i = 0; i < array.Length; i++) array[i] = 1;
 
-            long eighthFibNumber = FibonacciIterative(50);
-            Console.WriteLine(eighthFibNumber);
+            // DateTime start = DateTime.Now;
 
-            DateTime finish = DateTime.Now;
-            TimeSpan diff = finish - start;
-            Console.WriteLine($"Elapsed time: {diff.TotalSeconds:f5}");
+            // long eighthFibNumber = FibonacciIterative(50);
+            // Console.WriteLine(eighthFibNumber);
+
+            // long factorial = FactorialRecursively(10);
+            // Console.WriteLine(factorial);
+
+            // DateTime finish = DateTime.Now;
+            // TimeSpan diff = finish - start;
+            // Console.WriteLine($"Elapsed time: {diff.TotalSeconds:f5}");
+            AnalyzeRecursionChain(5);
         }
+
+        static void AnalyzeRecursionChain(int n)
+        {
+            if (n == 0) return;
+
+            Console.WriteLine($"Pre-execution step for {n}. {new string('*', n)}");
+            AnalyzeRecursionChain(n - 1);
+            Console.WriteLine($"Post-execution step for {n}. {new string('#', n)}");
+        }
+
+        // 10 000 -> 0.01128
+        // More than 10 000 -> Stack overflow
+        static int SumRecursively(int index, int[] numbers)
+        {
+            if (index == numbers.Length) return 0;
+            return numbers[index] + SumRecursively(index + 1, numbers);
+        }
+
+        // 10 000 -> 0.01660
+        static int SumIteratively(int[] numbers)
+        {
+            int result = 0;
+            for (int i = 0; i < numbers.Length; i++) result += numbers[i];
+            return result;
+        }
+
+        static long FactorialRecursively(int n)
+        {
+            if (n == 0 || n == 1) return 1;
+            return n * FactorialRecursively(n- 1);
+        }
+
+        static void EndlessRecursionLoop() => EndlessRecursionLoop();
 
         // n = 40 => 1.01526s
         // n = 50 => 95.34920s
