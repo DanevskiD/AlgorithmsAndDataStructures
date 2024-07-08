@@ -4,14 +4,25 @@
     {
         static void Main()
         {
-            int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
-            int number = int.Parse(Console.ReadLine());
+            // int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            // int number = int.Parse(Console.ReadLine());
 
             // if (BinarySearch(array, number)) Console.WriteLine($"{number} exists in the list.");
             // else Console.WriteLine($"{number} does not exist in the list.");
 
-            int insertPosition = BinarySearchRightMostInsertPosition(array, number);
-            Console.WriteLine($"{number} should be inserted at position {insertPosition}");
+            // int insertPosition = BinarySearchRightMostInsertPosition(array, number);
+            // Console.WriteLine($"{number} should be inserted at position {insertPosition}");
+
+            /* int[] firstArray = Console.ReadLine().Split().Select(int.Parse).ToArray();
+             int[] secondArray = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+             int[] concatenation = MergeOrderedArrays(firstArray, secondArray);
+             Console.WriteLine(string.Join(", ", concatenation));*/
+
+            int[] arrayToReverse = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int[] reversedArray = ReverseUsingStack(arrayToReverse);
+            Console.WriteLine(string.Join(", ", reversedArray));
+            
         }
 
         static bool Contains(int[] array, int number)
@@ -82,6 +93,37 @@
             }
 
             return high;
+        }
+    
+        static int[] MergeOrderedArrays(int[]first, int[] second)
+        {
+            int[] result = new int[first.Length + second.Length];
+
+            int firstIndex = 0, secondIndex = 0;
+            while (firstIndex < first.Length || secondIndex < second.Length)
+            {
+                int firstNumber = firstIndex < first.Length ? first[firstIndex] : int.MaxValue;
+                int secondNumber = secondIndex < second.Length ? second[secondIndex] : int.MaxValue;
+
+                int nextNumber;
+                if (firstNumber <= secondNumber) nextNumber = first[firstIndex++];
+                else nextNumber = second[secondIndex++];
+                
+
+                result[firstIndex + secondIndex - 1] = nextNumber;
+            }
+            return result;
+        }
+
+        static int[] ReverseUsingStack(int[] array)
+        {
+            Stack<int> stack = new Stack<int>(capacity: array.Length);
+            for (int i = 0; i < array.Length; i++) stack.Push(array[i]);
+
+            int[] result = new int[array.Length];
+            while (stack.Count > 0) result[result.Length - stack.Count] = stack.Pop();
+
+            return result;
         }
     }
 }

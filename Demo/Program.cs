@@ -23,7 +23,94 @@
             // DateTime finish = DateTime.Now;
             // TimeSpan diff = finish - start;
             // Console.WriteLine($"Elapsed time: {diff.TotalSeconds:f5}");
-            AnalyzeRecursionChain(5);
+
+            //AnalyzeRecursionChain(5);
+
+            /*int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+            int min = int.MaxValue;
+            for (int i = 0; i < array.Length; i++)
+                min = Math.Min(min, array[i]);*/
+
+            /*int m = int.Parse(Console.ReadLine());
+            int n = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= m; i++)
+            {
+                for (int j = 1; j <= n; j++)
+                    Console.WriteLine($"{i}, {j}");
+            }*/
+
+            /* int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+             Dictionary<int, int> occurencesByNumber = new Dictionary<int, int>();
+             for (int i = 0; i < array.Length; i++)
+             {
+                 if (!occurencesByNumber.ContainsKey(array[i]))
+                     occurencesByNumber[array[i]] = 0;
+                 occurencesByNumber[array[i]]++;
+             }
+
+             int[] filteredArray = array.Where(x => occurencesByNumber[x] % 2  == 0).ToArray();
+             Console.WriteLine(string.Join(", ", filteredArray));*/
+
+            /*int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+            Dictionary<int, int> occurencesByNumber = new Dictionary<int, int>();
+            int max = 0, maxElement = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (!occurencesByNumber.ContainsKey(array[i]))
+                    occurencesByNumber[array[i]] = 0;
+                int currentOccurances = ++occurencesByNumber[array[i]];
+
+                if (currentOccurances > max)
+                {
+                    max = currentOccurances;
+                    maxElement = array[i];
+                }
+            }
+
+            int[] filteredArray = array.Where(x => occurencesByNumber[x] % 2 == 0).ToArray();
+            Console.WriteLine(string.Join(", ", filteredArray));
+
+            if (max >= array.Length / 2 + 1)
+                Console.WriteLine($"This array has a majorant: {maxElement}");
+            else Console.WriteLine("This array does not have a majorant.");*/
+
+            int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+            Dictionary<int, int> occurencesByNumber = new Dictionary<int, int>();
+            int max = 0, firstMaxElement = 0, maxElementSum = 0, maxElementCount = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (!occurencesByNumber.ContainsKey(array[i]))
+                    occurencesByNumber[array[i]] = 0;
+                int currentOccurances = ++occurencesByNumber[array[i]];
+
+                if (currentOccurances > max)
+                {
+                    max = currentOccurances;
+                    firstMaxElement = array[i];
+                    maxElementSum = 0;
+                    maxElementCount = 0;
+                }
+
+                if (currentOccurances == max) 
+                {
+                    maxElementSum += array[i];
+                    maxElementCount++;
+                }
+            }
+
+            int[] filteredArray = array.Where(x => occurencesByNumber[x] % 2 == 0).ToArray();
+            Console.WriteLine(string.Join(", ", filteredArray));
+
+            if (max >= array.Length / 2 + 1)
+                Console.WriteLine($"This array has a majorant: {firstMaxElement}");
+            else Console.WriteLine("This array does not have a majorant.");
+
+            Console.WriteLine($"The mode is: {(double)maxElementSum / maxElementCount:f3}");
         }
 
         static void AnalyzeRecursionChain(int n)
