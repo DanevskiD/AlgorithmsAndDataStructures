@@ -78,9 +78,9 @@
                 Console.WriteLine($"This array has a majorant: {maxElement}");
             else Console.WriteLine("This array does not have a majorant.");*/
 
-            int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            //int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-            Dictionary<int, int> occurencesByNumber = new Dictionary<int, int>();
+            /*Dictionary<int, int> occurencesByNumber = new Dictionary<int, int>();
             int max = 0, firstMaxElement = 0, maxElementSum = 0, maxElementCount = 0;
             for (int i = 0; i < array.Length; i++)
             {
@@ -96,7 +96,7 @@
                     maxElementCount = 0;
                 }
 
-                if (currentOccurances == max) 
+                if (currentOccurances == max)
                 {
                     maxElementSum += array[i];
                     maxElementCount++;
@@ -110,7 +110,21 @@
                 Console.WriteLine($"This array has a majorant: {firstMaxElement}");
             else Console.WriteLine("This array does not have a majorant.");
 
-            Console.WriteLine($"The mode is: {(double)maxElementSum / maxElementCount:f3}");
+            Console.WriteLine($"The mode is: {(double)maxElementSum / maxElementCount:f3}");*/
+
+            // int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            // Array.Sort(array);
+            // Array.Reverse(array);
+            // Console.WriteLine(string.Join(" ", array.OrderByDescending(x => x)));
+            // int[] indices = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            // int[] orderedArray = array.OrderBy(x => x).Take(indices.Max()).ToArray();
+            
+            int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int middle = array.Length / 2;
+
+            IEnumerable<int> firstHalf = array.Take(middle).OrderBy(x => x);
+            IEnumerable<int> secondHalf = array.Skip(middle).OrderByDescending(x => x);
+            int[] result = firstHalf.Concat(secondHalf).ToArray();
         }
 
         static void AnalyzeRecursionChain(int n)
@@ -141,7 +155,7 @@
         static long FactorialRecursively(int n)
         {
             if (n == 0 || n == 1) return 1;
-            return n * FactorialRecursively(n- 1);
+            return n * FactorialRecursively(n - 1);
         }
 
         static void EndlessRecursionLoop() => EndlessRecursionLoop();
@@ -171,13 +185,13 @@
 
         static void Demo(int n) // max(n^2, 1) => O(n^2)
         {
-            if(n % 2 == 0) // O(n^2)
+            if (n % 2 == 0) // O(n^2)
             {
                 for (int i = 0; i < n; i++) // n iterations, in total n*n=n^2
                 {
-                    for(int j = 0; j < n; j++) // n iterations
+                    for (int j = 0; j < n; j++) // n iterations
                     {
-                        Console.WriteLine($"{i}, {j}"); 
+                        Console.WriteLine($"{i}, {j}");
                     }
                 }
             }
@@ -185,6 +199,43 @@
             {
                 Console.WriteLine("odd");
             }
+        }
+
+        static void FindMajorantAndMode()
+        {
+            int[] array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+            Dictionary<int, int> occurencesByNumber = new Dictionary<int, int>();
+            int max = 0, firstMaxElement = 0, maxElementSum = 0, maxElementCount = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (!occurencesByNumber.ContainsKey(array[i]))
+                    occurencesByNumber[array[i]] = 0;
+                int currentOccurances = ++occurencesByNumber[array[i]];
+
+                if (currentOccurances > max)
+                {
+                    max = currentOccurances;
+                    firstMaxElement = array[i];
+                    maxElementSum = 0;
+                    maxElementCount = 0;
+                }
+
+                if (currentOccurances == max)
+                {
+                    maxElementSum += array[i];
+                    maxElementCount++;
+                }
+            }
+
+            int[] filteredArray = array.Where(x => occurencesByNumber[x] % 2 == 0).ToArray();
+            Console.WriteLine(string.Join(", ", filteredArray));
+
+            if (max >= array.Length / 2 + 1)
+                Console.WriteLine($"This array has a majorant: {firstMaxElement}");
+            else Console.WriteLine("This array does not have a majorant.");
+
+            Console.WriteLine($"The mode is: {(double)maxElementSum / maxElementCount:f3}");
         }
     }
 }
