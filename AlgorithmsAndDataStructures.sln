@@ -31,7 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N_GoesTo_M", "N_GoesTo_M\N_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Combinatorial", "Combinatorial\Combinatorial.csproj", "{E7E66D75-23F8-4288-A239-FEDEAFCE0F67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.csproj", "{DE54FB82-EF33-48A7-8111-94FBB90199C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorting", "Sorting\Sorting.csproj", "{DE54FB82-EF33-48A7-8111-94FBB90199C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Searching", "Searching\Searching.csproj", "{E064DFD4-4ABD-4DE7-B2F3-7660F6E009D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backtracking", "Backtracking\Backtracking.csproj", "{5CF73B44-223E-4D1D-97B2-51BC59F50A4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +103,14 @@ Global
 		{DE54FB82-EF33-48A7-8111-94FBB90199C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE54FB82-EF33-48A7-8111-94FBB90199C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE54FB82-EF33-48A7-8111-94FBB90199C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E064DFD4-4ABD-4DE7-B2F3-7660F6E009D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E064DFD4-4ABD-4DE7-B2F3-7660F6E009D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E064DFD4-4ABD-4DE7-B2F3-7660F6E009D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E064DFD4-4ABD-4DE7-B2F3-7660F6E009D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CF73B44-223E-4D1D-97B2-51BC59F50A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CF73B44-223E-4D1D-97B2-51BC59F50A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CF73B44-223E-4D1D-97B2-51BC59F50A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CF73B44-223E-4D1D-97B2-51BC59F50A4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
